@@ -8,9 +8,7 @@ router.get('/all')
 
 router.get('/:id')
 
-router.patch('/:id')
-
-router.delete('/:id')
+router.post(':id')
 
 export default router;
 
