@@ -1,7 +1,10 @@
+import { json } from 'body-parser'
 import express, {Request, Response, NextFunction } from 'express'
 import quizRoutes from './routes/quiz'
 
 const app = express()
+
+app.use(json())
 
 app.use('/quiz', quizRoutes)
 
