@@ -1,12 +1,12 @@
-import { Router } from 'express'
+import { Router } from "express";
+import { getQuizes, createQuiz } from "../controllers/quiz";
 
-const router = Router()
+const router = Router();
 
-router.post('/')
+router.post("/", createQuiz);
 
-router.get('/all')
+router.get("/all", getQuizes);
 
-router.get('/:id')
+router.get("/:id");
 
 export default router;
-
