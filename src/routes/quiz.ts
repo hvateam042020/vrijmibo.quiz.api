@@ -8,7 +8,5 @@ router.get('/all')
 
 router.get('/:id')
 
-router.post(':id')
-
 export default router;
 
