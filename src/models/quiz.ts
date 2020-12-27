@@ -6,7 +6,13 @@ export class Quiz {
     this.id = Math.round(Math.random() * 999999999999);
   }
 
-  get quizId(){
-      return this.id
+  get quizId() {
+    return this.id;
+  }
+  get quizName() {
+    return this.name;
+  }
+  get quizQuestions() {
+    return this.questions;
   }
 }
