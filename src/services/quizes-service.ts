@@ -1,17 +1,5 @@
 import { Quiz } from "../models/quiz";
 import { dbQuizes } from "../db/quizes";
-import { timingSafeEqual } from "crypto";
-import { threadId } from "worker_threads";
-
-// export const addQuiz = (quiz: Quiz) => dbQuizes.push(quiz);
-
-// export const getQuiz = (quiz: Quiz) => dbQuizes.push(quiz);
-
-// export const getQuizes = () => dbQuizes;
-
-// const quizesService = { addQuiz, getQuiz, getQuizes };
-// export default quizesService;
-
 class QuizesService {
   private readonly ONE_ITEM = 1;
 
@@ -35,10 +23,11 @@ class QuizesService {
   }
 
   deleteQuiz(quizId: number) {
-    if (this.dbQuizes.length === 0) {
-      return undefined;
-    }
     const quizIndex = this.dbQuizes.findIndex((quiz) => quiz.quizId === quizId);
+    
+    if (!quizIndex) {
+        throw new Error(`quiz with id: ${quizId} not found.`);
+      }
     this.dbQuizes.splice(quizIndex, this.ONE_ITEM);
   }
 }
