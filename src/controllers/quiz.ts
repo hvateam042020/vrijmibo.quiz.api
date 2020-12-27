@@ -1,9 +1,10 @@
 import { RequestHandler } from "express";
+import { Question } from "../models/question";
 import { Quiz } from "../models/quiz";
 import QuizesService from "../services/quizes-service";
 
 export const createQuiz: RequestHandler = (req, res) => {
-  const quiz = req.body;
+  const quiz = req.body as { name: string; questions: Array<Question> };
   const newQuiz = new Quiz(quiz.name, quiz.questions);
   QuizesService.addQuiz(newQuiz);
   res.status(201).json(newQuiz);
