@@ -13,15 +13,17 @@ import { threadId } from "worker_threads";
 // export default quizesService;
 
 class QuizesService {
-  readonly ONE_ITEM = 1;
+  private readonly ONE_ITEM = 1;
 
   constructor(private dbQuizes: Quiz[]) {}
 
   getQuiz(quizId: number) {
-    if (this.dbQuizes.length === 0) {
-      return undefined;
+    const quiz = this.dbQuizes.find((quiz) => quiz.quizId === quizId);
+
+    if (!quiz) {
+      throw new Error(`quiz with id: ${quizId} not found.`);
     }
-    return this.dbQuizes.find((quiz) => quiz.quizId === quizId);
+    return quiz;
   }
 
   addQuiz(quiz: Quiz) {

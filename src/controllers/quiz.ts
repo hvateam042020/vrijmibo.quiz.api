@@ -11,3 +11,12 @@ export const createQuiz: RequestHandler = (req, res) => {
 export const getQuizes: RequestHandler = (req, res) => {
     res.status(200).json(QuizesService.getQuizes())
 };
+
+export const getQuiz: RequestHandler = (req, res) => {
+    QuizesService.getQuiz(Number(req.params.id))
+    res.status(200).json(QuizesService.getQuizes())
+};
+
+export const deleteQuiz: RequestHandler = (req, res) => {
+    res.status(200).json(QuizesService.getQuizes())
+};
