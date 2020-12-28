@@ -6,7 +6,7 @@ class QuizesService {
   constructor(private dbQuizes: Quiz[]) {}
 
   getQuiz(quizId: number) {
-    const quiz = this.dbQuizes.find((quiz) => quiz.quizId === quizId);
+    const quiz = this.dbQuizes.find((quiz) => quiz.id === quizId);
 
     if (!quiz) {
       throw new Error(`quiz with id: ${quizId} not found.`);
@@ -26,7 +26,7 @@ class QuizesService {
   }
 
   deleteQuiz(quizId: number) {
-    const quizIndex = this.dbQuizes.findIndex((quiz) => quiz.quizId === quizId);
+    const quizIndex = this.dbQuizes.findIndex((quiz) => quiz.id === quizId);
 
     if (quizIndex < 0) {
       throw new Error(`Quiz with id: ${quizId} not found.`);

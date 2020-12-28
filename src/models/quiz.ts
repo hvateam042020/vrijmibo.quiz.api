@@ -1,18 +1,18 @@
 import { Question } from "./question";
 export class Quiz {
-  private id: number = 0;
+  private _id: number = 0;
 
-  constructor(private name: string, private questions: Question[]) {
-    this.id = Math.round(Math.random() * 999999999999);
+  constructor(private _name: string, private _questions: Question[]) {
+    this._id = Math.round(Math.random() * 999999999999);
   }
 
-  get quizId() {
-    return this.id;
+  get id() {
+    return this._id;
   }
-  get quizName() {
-    return this.name;
+  get name() {
+    return this._name;
   }
-  get quizQuestions() {
-    return this.questions;
+  get questions() {
+    return this._questions;
   }
 }
