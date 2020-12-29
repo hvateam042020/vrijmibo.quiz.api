@@ -10,18 +10,19 @@ class UsersServices {
     this.dbUsers.push(user);
   }
   getResult(user: User) {
-    const correctAnswers: Array<boolean> = [];
-    const questions = this.dbQuizes.find((quiz) => quiz.id === user.quizId)!
-      .questions;
+    const result = this.dbQuizes
+      .find((quiz) => quiz.id === user.quizId)!
+      .questions.map((question, index) => {
+        const valid = question.validAnswer === user.givenAnswers[index];
+        return {
+          question: question.question,
+          validAnswer: question.validAnswer,
+          givenAnswer: user.givenAnswers[index],
+          isValid: valid,
+        };
+      });
 
-    user.givenAnswers.forEach((a, i) =>
-      a === questions[i].validAnswer
-        ? correctAnswers.push(true)
-        : correctAnswers.push(false)
-    );
-
-    const result = { ...questions, ...user.givenAnswers, ...correctAnswers };
-    return { user, result };
+    return { userId: user.id, quizId: user.quizId, quizResult: result };
   }
 }
 
