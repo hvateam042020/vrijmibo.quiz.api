@@ -4,7 +4,7 @@ import { Quiz } from "../models/quiz";
 import QuizesService from "../services/quizes-service";
 
 export const createQuiz: RequestHandler = (req, res) => {
-  const quiz = req.body as { name: string; questions: Array<Question> };
+  const quiz: Quiz = req.body;
   const newQuiz = new Quiz(quiz.name, quiz.questions);
   QuizesService.addQuiz(newQuiz);
   res.status(201).json(newQuiz);
