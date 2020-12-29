@@ -1,4 +1,4 @@
-export class User {
+export class QuizResponse {
   private _id: number = 0;
 
   constructor(private _quizId: number, private _givenAnswers: Array<string>) {
