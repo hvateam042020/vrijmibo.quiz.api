@@ -1,5 +1,4 @@
 import { RequestHandler } from "express";
-import { Question } from "../models/question";
 import { Quiz } from "../models/quiz";
 import QuizesService from "../services/quizes-service";
 
