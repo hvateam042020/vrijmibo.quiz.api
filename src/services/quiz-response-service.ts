@@ -2,6 +2,7 @@ import { QuizResponse } from "../models/quiz-response";
 import { dbQuizReponse } from "../db/quiz-response";
 import { dbQuizes } from "../db/quizes";
 import { Quiz } from "../models/quiz";
+import { QuizResult } from "../models/quiz-result";
 
 class UsersServices {
   constructor(private dbUsers: QuizResponse[], private dbQuizes: Quiz[]) {}
@@ -10,9 +11,10 @@ class UsersServices {
     this.dbUsers.push(quizResponse);
   }
   getResult(quizResponse: QuizResponse) {
-    const result = this.dbQuizes
-      .find((quiz) => quiz.id === quizResponse.quizId)!
-      .questions.map((question, index) => {
+    const quiz = this.dbQuizes.find((quiz) => quiz.id === quizResponse.quizId);
+
+    if (quiz) {
+      const result = quiz.questions.map((question, index) => {
         const valid = question.validAnswer === quizResponse.givenAnswers[index];
         return {
           question: question.question,
@@ -22,7 +24,10 @@ class UsersServices {
         };
       });
 
-    return { userId: quizResponse.id, quizId: quizResponse.quizId, quizResult: result };
+      return new QuizResult(quizResponse.id, quizResponse.quizId, result);
+    } else {
+      throw new Error("quiz not found");
+    }
   }
 }
 
