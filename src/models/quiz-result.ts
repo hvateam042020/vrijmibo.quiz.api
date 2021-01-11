@@ -1,6 +1,6 @@
 import { QuizResponse } from "./quiz-response";
 
-interface quizResult {
+export interface QuestionResult {
   question: string;
   validAnswer: string;
   givenAnswer: string;
@@ -11,6 +11,6 @@ export class QuizResult {
   constructor(
     private quizResponseId: number,
     private quizId: number,
-    private quizResult: quizResult[]
+    private quizResult: QuestionResult[]
   ) {}
 }

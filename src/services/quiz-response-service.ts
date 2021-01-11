@@ -2,7 +2,7 @@ import { QuizResponse } from "../models/quiz-response";
 import { dbQuizReponse } from "../db/quiz-response";
 import { dbQuizes } from "../db/quizes";
 import { Quiz } from "../models/quiz";
-import { QuizResult } from "../models/quiz-result";
+import { QuizResult, QuestionResult } from "../models/quiz-result";
 
 class UsersServices {
   constructor(private dbUsers: QuizResponse[], private dbQuizes: Quiz[]) {}
@@ -14,7 +14,7 @@ class UsersServices {
     const quiz = this.dbQuizes.find((quiz) => quiz.id === quizResponse.quizId);
 
     if (quiz) {
-      const result = quiz.questions.map((question, index) => {
+      const result = quiz.questions.map((question, index): QuestionResult => {
         const valid = question.validAnswer === quizResponse.givenAnswers[index];
         return {
           question: question.question,
